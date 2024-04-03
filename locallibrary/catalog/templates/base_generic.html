@@ -21,10 +21,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
+
           {% block sidebar %}
             <ul class="sidebar-nav">
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'books' %}">All books</a></li>
+              <li><a href="{% url 'bookinstances' %}">All book instances</a></li>
               <li><a href="{% url "authors" %}">All authors</a></li>
             </ul>
 
@@ -50,16 +52,22 @@
               {% if perms.catalog.add_author %}
                 <li><a href="{% url 'author-create' %}">Create author</a></li>
               {% endif %}
+              {% if perms.catalog.add_bookinstance %}
+                <li><a href="{% url 'bookinstance-create' %}">Create Book Instance</a></li>
+              {% endif %}
+              {% if perms.catalog.add_book %}
+                <li><a href="{% url 'book-create' %}">Create book</a></li>
+              {% endif %}
             </ul>
             {% endif %} 
-            
           {% endblock %}
+
         </div>
         <div class="col-sm-10 ">
-            {% block content %}
-            
-            {% endblock %}
-            {% block pagination %}
+      {% block content %}        
+    {% endblock %}
+
+  {% block pagination %}
     {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
@@ -75,7 +83,6 @@
             </span>
         </div>
     {% endif %}
-
   {% endblock %}
 
         </div>

@@ -6,7 +6,14 @@ import uuid
 from django.conf import settings
 from datetime import date
 
+class Language(models.Model):
+    name = models.CharField(max_length = 30, unique = True, help_text = 'Book language')
 
+    def get_absolute_url(self):
+        return reverse("language-detail", args = [str(self.id)])
+    
+    def __str__(self):
+        return f'{self.name}'
 
 class Genre(models.Model):
     """Model representing a book genre."""
@@ -51,6 +58,9 @@ class Book(models.Model):
     # Genre class has already been defined so we can specify the object above.
     genre = models.ManyToManyField(
         Genre, help_text="Select a genre for this book")
+    
+    language = models.ForeignKey('Language', on_delete = models.SET_NULL, null = True)
+    
 
     def __str__(self):
         """String for representing the Model object."""
@@ -120,13 +130,5 @@ class Author(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return f'{self.last_name}, {self.first_name}'
-    
-class Language(models.Model):
-    name = models.CharField(max_length = 30, unique = True, help_text = 'Book language')
 
-    def get_absolute_url(self):
-        return reverse("language-detail", args = [str(self.id)])
-    
-    def __str__(self):
-        return f'{self.name}'
     
