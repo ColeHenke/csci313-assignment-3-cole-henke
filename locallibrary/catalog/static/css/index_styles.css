@@ -1,0 +1,46 @@
+hr {
+    top: 20px;
+    height: 12px;
+    background: green;
+    margin-top: 25px;
+    margin-bottom: 5px; 
+}
+
+#bottom-hr {
+    width: 300px;
+}
+
+#list-div {
+    width: 400px;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  #logout-form {
+    display: inline;
+  }
+  #logout-form button {
+    padding: 0;
+    margin: 0;
+  }
+
+.btn{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.green-text {
+    color: green;
+}
+  
+.vertical-border {
+    border-right: 6px solid black;
+    left: 50%;
+    margin-top: 4px;
+    margin-left: -3px;
+    top: 0;
+  }
