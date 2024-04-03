@@ -5,23 +5,29 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Local Library Home</h1>
+<div class="container">
+  <h1>Local Library Home</h1> 
   <p>
     Welcome to LocalLibrary, a website developed by
-    <em>Mozilla Developer Network</em>!
+    <em>Mozilla Developer Network and Cole Henke!!!!</em>!
   </p>
+  <hr />
   <h2>Dynamic content</h2>
+  <div id="list-div">
   <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Genres:</strong> {{ num_genres }}</li> 
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Books:</strong> {{ num_books }}</li>
+    <li class="list-group-item"><strong>Copies:</strong> {{ num_instances }}</li>
+    <li class="list-group-item"><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li class="list-group-item"><strong>Authors:</strong> {{ num_authors }}</li>
+    <li class="list-group-item"><strong>Authors:</strong> {{ num_authors }}</li>
+    <li class="list-group-item"><strong>Genres:</strong> {{ num_genres }}</li> 
   </ul>
+</div>
 
+  <hr id="bottom-hr"/>
   <p>
     You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
   </p>
+</div>
 {% endblock %}

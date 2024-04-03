@@ -14,71 +14,80 @@
       crossorigin="anonymous">
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index_styles.css' %}" />
+
 
   </head>
   <body>
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+      crossorigin="anonymous">
+    </script>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2 vertical-border">
 
           {% block sidebar %}
+          <div id="testdiv" class="sidebar">
             <ul class="sidebar-nav">
-              <li><a href="{% url 'index' %}">Home</a></li>
-              <li><a href="{% url 'books' %}">All books</a></li>
-              <li><a href="{% url 'bookinstances' %}">All book instances</a></li>
-              <li><a href="{% url "authors" %}">All authors</a></li>
+              <li><a class="btn btn-outline-primary" href="{% url 'index' %}">Home</a></li>
+              <li><a class="btn btn-outline-primary" href="{% url 'books' %}">All books</a></li>
+              <li><a class="btn btn-outline-primary" href="{% url 'bookinstances' %}">All book instances</a></li>
+              <li><a class="btn btn-outline-primary" href="{% url "authors" %}">All authors</a></li>
             </ul>
 
             <ul class="sidebar-nav">
              {% if user.is_authenticated %}
                <li>User: {{ user.get_username }}</li>
-               <li><a href="{% url 'my-borrowed' %}">My Borrowed</a></li>
+               <li><a class="btn btn-outline-dark" href="{% url 'my-borrowed' %}">My Borrowed</a></li>
                <li>
                  <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
                    {% csrf_token %}
-                   <button type="submit" class="btn btn-link">Logout</button>
+                   <button type="submit" class="btn btn-outline-danger">Logout</button>
                  </form>
                </li>
              {% else %}
-               <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+               <li><a class="btn btn-outline-danger" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
              {% endif %}
             </ul>
 
             {% if user.is_staff %}
               <ul class="sidebar-nav">
               <li>Staff</li>
-              <li><a href="{% url 'all-borrowed' %}">All borrowed</a></li>
+              <li><a class="btn btn-outline-success" href="{% url 'all-borrowed' %}">All borrowed</a></li>
               {% if perms.catalog.add_author %}
-                <li><a href="{% url 'author-create' %}">Create author</a></li>
+                <li><a class="btn btn-outline-success" href="{% url 'author-create' %}">Create author</a></li>
               {% endif %}
               {% if perms.catalog.add_bookinstance %}
-                <li><a href="{% url 'bookinstance-create' %}">Create Book Instance</a></li>
+                <li><a class="btn btn-outline-success" href="{% url 'bookinstance-create' %}">Create Book Instance</a></li>
               {% endif %}
               {% if perms.catalog.add_book %}
-                <li><a href="{% url 'book-create' %}">Create book</a></li>
+                <li><a class="btn btn-outline-success" href="{% url 'book-create' %}">Create book</a></li>
               {% endif %}
             </ul>
             {% endif %} 
+          </div>
           {% endblock %}
-
-        </div>
-        <div class="col-sm-10 ">
-      {% block content %}        
-    {% endblock %}
+            </div>
+          <div class="col-sm-10 ">
+          
+      {% block content %}{% endblock %}
 
   {% block pagination %}
     {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                    href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
                 {% endif %}
                 <span class="page-current">
                     Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                    href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
                 {% endif %}
             </span>
         </div>
