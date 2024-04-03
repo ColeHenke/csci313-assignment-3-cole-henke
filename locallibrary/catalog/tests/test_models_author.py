@@ -1,5 +1,5 @@
 from django.test import TestCase
-from catalog.models import Author
+from catalog.models import Author, Book, Genre, Language
 
 class AuthorModelTest(TestCase):
     @classmethod
@@ -31,5 +31,3 @@ class AuthorModelTest(TestCase):
         author = Author.objects.get(id=1)
         # This will also fail if the urlconf is not defined.
         self.assertEqual(author.get_absolute_url(), '/catalog/author/1')
-
-
